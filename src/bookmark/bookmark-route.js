@@ -63,7 +63,7 @@ bookmarkRoute.route('/:id')
       logger.info(`bookmark with id ${id} found`)
       return res.send(bookmark)
     }
-    logger.erro(`bookmark with id ${id} not found`)
+    logger.error(`bookmark with id ${id} not found`)
     return res.status(400).send('404 not found')
   })
   .delete((req, res) => {
