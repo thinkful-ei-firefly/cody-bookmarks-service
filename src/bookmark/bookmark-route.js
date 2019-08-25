@@ -15,22 +15,22 @@ bookmarkRoute.route('/')
 
     if (!title) {
       logger.error('title required');
-      return res.status(404).send('title required')
+      return res.status(400).send('title required')
     }
 
     if (!url) {
       logger.error('url required');
-      return res.status(404).send('url required')
+      return res.status(400).send('url required')
     }
 
     if (!description) {
       logger.error('description required');
-      return res.status(404).send('description required')
+      return res.status(400).send('description required')
     }
 
     if (!rating) {
       logger.error('rating required');
-      return res.status(404).send('rating required')
+      return res.status(400).send('rating required')
     }
 
     const id = uuid()
@@ -64,7 +64,7 @@ bookmarkRoute.route('/:id')
       return res.send(bookmark)
     }
     logger.error(`bookmark with id ${id} not found`)
-    return res.status(400).send('404 not found')
+    return res.status(404).send('404 not found')
   })
   .delete((req, res) => {
     const { id } = req.params

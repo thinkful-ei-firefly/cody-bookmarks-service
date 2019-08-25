@@ -18,3 +18,9 @@
 {"message":"bookmark with id 1 found","level":"info"}
 {"message":"bookmark with id 12 not found","level":"error"}
 {"message":"bookmark with id 134 not found","level":"error"}
+{"message":"Unauthorized Request","level":"info"}
+{"message":"bookmark with id 1 found","level":"info"}
+{"message":"bookmark with id 293f221c-db39-490b-b5ca-c8f9f1a13f74 added","level":"info"}
+{"message":"title required","level":"error"}
+{"message":"bookmark with id 1 found","level":"info"}
+{"message":"bookmark with id 2 not found","level":"error"}
