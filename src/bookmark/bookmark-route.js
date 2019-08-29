@@ -2,14 +2,21 @@ const express = require('express');
 const logger = require('../logger');
 const store = require('../store')
 const uuid = require('uuid/v4');
+const {bookmarkService} = require('./bookmarkService')
+
 
 const bookmarkRoute = express.Router();
 const bodyParser = express.json();
 
 bookmarkRoute.route('/')
-  .get((req, res) => {
-    res.json(store)
+  .get((req, res, next) => {
+    bookmarkService.getAllBookmarks(req.app.get('db')) // in server we app.set('db', db) (string its called, knex db)
+    .then(bm => {
+      res.json(bm)
+    })
+    .catch(next) // next b/c of error handling middleware
   })
+  
   .post((req, res) => {
     const { title, url, description, rating } = req.body
 
@@ -17,17 +24,14 @@ bookmarkRoute.route('/')
       logger.error('title required');
       return res.status(400).send('title required')
     }
-
     if (!url) {
       logger.error('url required');
       return res.status(400).send('url required')
     }
-
     if (!description) {
       logger.error('description required');
       return res.status(400).send('description required')
     }
-
     if (!rating) {
       logger.error('rating required');
       return res.status(400).send('rating required')
